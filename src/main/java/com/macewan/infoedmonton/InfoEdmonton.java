@@ -27,8 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class Main extends Application {
-
+public class InfoEdmonton extends Application {
     private static WebView webViewProp, webViewCov;
     private TableView<PropertyAssessment> table = new TableView<>();
     private ObservableList<PropertyAssessment> obsListProperty;
@@ -655,5 +654,9 @@ public class Main extends Application {
         colPointLocation.prefWidthProperty().bind(table.widthProperty().multiply(0.25));
         table.getColumns().add(colPointLocation);
         return table;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
