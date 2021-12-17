@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.10'
     id 'org.beryx.jlink' version '2.24.1'
+    id 'com.github.johnrengelman.shadow' version '7.1.1'
 }
 
 group 'com.macewan'
@@ -25,7 +26,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.macewan.infoedmonton'
-    mainClass = 'com.macewan.infoedmonton.Main'
+    mainClass = 'com.macewan.infoedmonton.Launcher'
 }
 
 javafx {
@@ -45,13 +46,15 @@ test {
 }
 
 jlink {
-    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
         name = 'app'
     }
 }
 
-jlinkZip {
-    group = 'distribution'
+shadowJar {
+    archiveBaseName.set('InfoEdmonton')
+    archiveClassifier.set('')
+    archiveVersion.set('')
+    destinationDirectory = file("build/distribution")
 }
